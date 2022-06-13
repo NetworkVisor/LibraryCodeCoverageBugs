@@ -14,6 +14,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		stylecop.json = stylecop.json
 		version.json = version.json
 		azure-pipelines.yml = azure-pipelines.yml
+		CONTRIBUTING.md = CONTRIBUTING.md
+		Directory.Build.rsp = Directory.Build.rsp
+		init.cmd = init.cmd
+		init.ps1 = init.ps1
+		LICENSE = LICENSE
+		strongname.snk = strongname.snk
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9E154A29-1796-4B85-BD81-B6A385D8FF71}"
@@ -38,6 +44,59 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{81005BD9-9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryCodeCoverageBugs.Tests", "test\LibraryCodeCoverageBugs.Tests\LibraryCodeCoverageBugs.Tests.csproj", "{B010E79E-9E6E-48F7-A90D-C2B19BA86BCB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eng", "eng", "{C40BB905-C12A-4E5A-BC04-9F5827F45A9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure-pipelines", "azure-pipelines", "{0937B522-E005-4773-A2D9-FB7EA44F6477}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines\build.yml = azure-pipelines\build.yml
+		azure-pipelines\dotnet-test-cloud.ps1 = azure-pipelines\dotnet-test-cloud.ps1
+		azure-pipelines\dotnet.yml = azure-pipelines\dotnet.yml
+		azure-pipelines\Get-ArtifactsStagingDirectory.ps1 = azure-pipelines\Get-ArtifactsStagingDirectory.ps1
+		azure-pipelines\Get-nbgv.ps1 = azure-pipelines\Get-nbgv.ps1
+		azure-pipelines\Get-NuGetTool.ps1 = azure-pipelines\Get-NuGetTool.ps1
+		azure-pipelines\Get-ProcDump.ps1 = azure-pipelines\Get-ProcDump.ps1
+		azure-pipelines\Get-SymbolFiles.ps1 = azure-pipelines\Get-SymbolFiles.ps1
+		azure-pipelines\Get-TempToolsPath.ps1 = azure-pipelines\Get-TempToolsPath.ps1
+		azure-pipelines\install-dependencies.yml = azure-pipelines\install-dependencies.yml
+		azure-pipelines\justnugetorg.nuget.config = azure-pipelines\justnugetorg.nuget.config
+		azure-pipelines\publish-codecoverage.yml = azure-pipelines\publish-codecoverage.yml
+		azure-pipelines\publish-deployables.yml = azure-pipelines\publish-deployables.yml
+		azure-pipelines\publish-symbols.yml = azure-pipelines\publish-symbols.yml
+		azure-pipelines\release.yml = azure-pipelines\release.yml
+		azure-pipelines\test.runsettings = azure-pipelines\test.runsettings
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "artifacts", "artifacts", "{350282D8-666A-4A8C-B298-F11368269BB1}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines\artifacts\_all.ps1 = azure-pipelines\artifacts\_all.ps1
+		azure-pipelines\artifacts\_pipelines.ps1 = azure-pipelines\artifacts\_pipelines.ps1
+		azure-pipelines\artifacts\_stage_all.ps1 = azure-pipelines\artifacts\_stage_all.ps1
+		azure-pipelines\artifacts\build_logs.ps1 = azure-pipelines\artifacts\build_logs.ps1
+		azure-pipelines\artifacts\coverageResults.ps1 = azure-pipelines\artifacts\coverageResults.ps1
+		azure-pipelines\artifacts\deployables.ps1 = azure-pipelines\artifacts\deployables.ps1
+		azure-pipelines\artifacts\projectAssetsJson.ps1 = azure-pipelines\artifacts\projectAssetsJson.ps1
+		azure-pipelines\artifacts\symbols.ps1 = azure-pipelines\artifacts\symbols.ps1
+		azure-pipelines\artifacts\test_symbols.ps1 = azure-pipelines\artifacts\test_symbols.ps1
+		azure-pipelines\artifacts\testResults.ps1 = azure-pipelines\artifacts\testResults.ps1
+		azure-pipelines\artifacts\Variables.ps1 = azure-pipelines\artifacts\Variables.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "variables", "variables", "{1F98E10A-1681-453D-A866-2BA16FA40674}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines\variables\_all.ps1 = azure-pipelines\variables\_all.ps1
+		azure-pipelines\variables\_pipelines.ps1 = azure-pipelines\variables\_pipelines.ps1
+		azure-pipelines\variables\DotNetSdkVersion.ps1 = azure-pipelines\variables\DotNetSdkVersion.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{B680B8DB-74D0-4D3E-A954-6D5FAF4F1ADF}"
+	ProjectSection(SolutionItems) = preProject
+		tools\Check-DotNetRuntime.ps1 = tools\Check-DotNetRuntime.ps1
+		tools\Check-DotNetSdk.ps1 = tools\Check-DotNetSdk.ps1
+		tools\Install-DotNetSdk.ps1 = tools\Install-DotNetSdk.ps1
+		tools\Install-NuGetCredProvider.ps1 = tools\Install-NuGetCredProvider.ps1
+		tools\Set-EnvVars.ps1 = tools\Set-EnvVars.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +120,11 @@ Global
 		{36CCE840-6FE5-4DB9-A8D5-8CF3CB6D342A} = {1CE9670B-D5FF-46A7-9D00-24E70E6ED48B}
 		{7EDB7A53-4D94-46EF-9C35-A511E75FADBA} = {7B494470-8449-4124-9B2D-B8DBFD96F29B}
 		{B010E79E-9E6E-48F7-A90D-C2B19BA86BCB} = {81005BD9-96BB-440F-8459-34EC6DA1A500}
+		{C40BB905-C12A-4E5A-BC04-9F5827F45A9D} = {1CE9670B-D5FF-46A7-9D00-24E70E6ED48B}
+		{0937B522-E005-4773-A2D9-FB7EA44F6477} = {C40BB905-C12A-4E5A-BC04-9F5827F45A9D}
+		{350282D8-666A-4A8C-B298-F11368269BB1} = {0937B522-E005-4773-A2D9-FB7EA44F6477}
+		{1F98E10A-1681-453D-A866-2BA16FA40674} = {0937B522-E005-4773-A2D9-FB7EA44F6477}
+		{B680B8DB-74D0-4D3E-A954-6D5FAF4F1ADF} = {C40BB905-C12A-4E5A-BC04-9F5827F45A9D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3944F6A-384B-4B0F-B93F-3BD513DC57BD}
