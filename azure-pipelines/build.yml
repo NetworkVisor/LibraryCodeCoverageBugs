@@ -17,7 +17,6 @@ jobs:
     displayName: ⚙ Set build number
 
   - template: dotnet.yml
-  - template: expand-template.yml
 
 - job: Linux
   pool:
@@ -27,7 +26,6 @@ jobs:
     clean: true
   - template: install-dependencies.yml
   - template: dotnet.yml
-  - template: expand-template.yml
 
 - job: macOS
   condition: ${{ parameters.includeMacOS }}
@@ -38,7 +36,6 @@ jobs:
     clean: true
   - template: install-dependencies.yml
   - template: dotnet.yml
-  - template: expand-template.yml
 
 - job: WrapUp
   dependsOn:
