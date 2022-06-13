@@ -1,9 +1,7 @@
 parameters:
-- name: windowsPool
-  type: object
-  default:
-    vmImage: windows-2022
-- name: includeMacOS
+  windowsPool: Local Windows
+  jobTimeout : 30
+  includeMacOS:
 
 jobs:
 - job: Windows
@@ -42,7 +40,8 @@ jobs:
   - Windows
   - Linux
   - macOS
-  pool: ${{ parameters.windowsPool }} # Use Windows agent because PublishSymbols task requires it (https://github.com/microsoft/azure-pipelines-tasks/issues/13821).
+  pool:
+    vmImage: windows-2022
   condition: succeededOrFailed()
   steps:
   - checkout: self
