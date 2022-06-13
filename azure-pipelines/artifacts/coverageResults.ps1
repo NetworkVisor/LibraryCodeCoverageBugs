@@ -1,6 +1,6 @@
 $RepoRoot = [System.IO.Path]::GetFullPath("$PSScriptRoot\..\..")
 
-$coverageFiles = @(Get-ChildItem "$RepoRoot/test/.../TestResults/*/*.cobertura.xml" -Recurse)
+$coverageFiles = @(Get-ChildItem "$RepoRoot/test/*/TestResults/*/*.cobertura.xml" -Recurse)
 
 # Prepare code coverage reports for merging on another machine
 if ($env:SYSTEM_DEFAULTWORKINGDIRECTORY) {
