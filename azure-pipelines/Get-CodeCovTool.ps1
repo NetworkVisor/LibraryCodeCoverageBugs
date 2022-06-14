@@ -15,7 +15,7 @@ if ($IsMacOS)
     $codeCovPath = Join-Path $binaryToolsPath codecov
     $codeCovUrl = "https://uploader.codecov.io/latest/macos/codecov"
 }
-else if ($IsLinux)
+elseif ($IsLinux)
 {
     $codeCovPath = Join-Path $binaryToolsPath codecov
     $codeCovUrl = "https://uploader.codecov.io/latest/linux/codecov"
@@ -33,7 +33,7 @@ if (!(Test-Path $codeCovPath)) {
 
 if (!(Test-Path $codeCovPath))
 {
-    Write-Host "Successfully downloaded to $codeCovPath" -ForegroundColor Yellow
+    Write-Host "Successfully downloaded from $codeCovUrl to $codeCovPath" -ForegroundColor Yellow
 }
 
 return (Resolve-Path $codeCovPath).Path
