@@ -21,7 +21,7 @@ Get-ChildItem -Recurse -Path "$PathToCodeCoverage/*.cobertura.xml" | % {
     if ($IsWindows)
     {
         $filePath = $_.FullName
-        $filePath.replace([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar)
+        $filePath.replace([IO.Path]::AltDirectorySeparatorChar, [IO.Path]::DirectorySeparatorChar)
     }
     else
     {
