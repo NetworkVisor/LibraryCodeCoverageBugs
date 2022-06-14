@@ -15,12 +15,11 @@ Param (
 # CodeCov cannot handle full windows paths so make them relative
 if ($IsWindows)
 {
-    $relativeFilePath = Resolve-Path -relative $PathToCodeCoverage
-    $codeCoveragePathWildcard = (Join-Path $relativeFilePath "*.cobertura.xml")
+    $codeCoveragePathWildcard = Resolve-Path -relative $PathToCodeCoverage
 }
 else
 {
-    $codeCoveragePathWildcard = (Join-Path $PathToCodeCoverage "*.cobertura.xml")
+    $codeCoveragePathWildcard = $PathToCodeCoverage
 }
 
 $RepoRoot = (Resolve-Path "$PSScriptRoot/..").Path
