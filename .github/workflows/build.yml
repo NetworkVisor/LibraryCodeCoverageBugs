@@ -109,7 +109,7 @@ jobs:
         path: ${{ runner.temp }}/_artifacts/deployables
       if: always()
     - name: Publish code coverage results to codecov.io
-      run: azure-pipelines/publish-CodeCov.ps1 ${{ runner.temp }}/_artifacts/coverageResults
+      run: azure-pipelines/publish-CodeCov.ps1 -CodeCovToken ${{ env.BUILDCONFIGURATION }} -PathToCodeCoverage ${{ runner.temp }}/_artifacts/coverageResults
       timeout-minutes: 3
       continue-on-error: true
       shell: pwsh
