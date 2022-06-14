@@ -109,7 +109,9 @@ jobs:
         path: ${{ runner.temp }}/_artifacts/deployables
       if: always()
     - name: Publish code coverage results to codecov.io
-      run: bash <(curl -s https://codecov.io/bash)
-      shell: bash
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ env.codecov_token }} # not required for public repos
+        flags: unittests
       timeout-minutes: 3
       continue-on-error: true
