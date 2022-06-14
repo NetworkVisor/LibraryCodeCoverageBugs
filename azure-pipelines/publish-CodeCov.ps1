@@ -14,8 +14,12 @@ Param (
     [string]$PathToCodeCoverage
 )
 
-$coverageFiles =[string]::join(',', (Get-ChildItem "$PathToCodeCoverage/*.cobertura.xml" -Recurse))
+$codeCoverageFiles = @(Get-ChildItem "$PathToCodeCoverage/*.cobertura.xml" -Recurse)
 
-Write-Host "Publishing to codecov: $coverageFiles" -ForegroundColor Yellow
+$codeCoverageFiles %|
+{
+    & (& $PSScriptRoot\Get-CodeCovTool.ps1) -t $CodeCovToken -f $_
+}
 
-& (& $PSScriptRoot\Get-CodeCovTool.ps1) -t "$CodeCovToken" -f "$coverageFiles"
+
+
