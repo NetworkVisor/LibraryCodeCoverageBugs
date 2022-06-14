@@ -112,7 +112,7 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         token: ${{ env.codecov_token }} # not required for public repos
-        flags: unittests
-        directory: ${{ runner.temp }}/_artifacts/coverageResults
+        flags: unittests,${{ runner.os }}
+        directory: ${{ runner.temp }}/_artifacts/coverageResults/*
       timeout-minutes: 3
       continue-on-error: true
