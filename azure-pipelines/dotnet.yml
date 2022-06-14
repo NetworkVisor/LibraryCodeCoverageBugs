@@ -17,7 +17,7 @@ steps:
   condition: succeededOrFailed()
 
 - powershell: |
-    $ArtifactStagingFolder = & "$PSScriptRoot/Get-ArtifactsStagingDirectory.ps1"
+    $ArtifactStagingFolder = & "azure-pipelines/dotnet-test-cloud.ps1 Get-ArtifactsStagingDirectory.ps1"
     $CoverageResultsFolder = Join-Path $ArtifactStagingFolder "coverageResults-$(Agent.JobName)"
     azure-pipelines/publish-CodeCov.ps1 -CodeCovToken "$(codecov_token)" -PathToCodeCoverage "$CoverageResultsFolder"
   displayName: 📢 Publish code coverage results to codecov.io
