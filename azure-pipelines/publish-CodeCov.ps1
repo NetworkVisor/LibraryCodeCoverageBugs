@@ -20,7 +20,7 @@ Write-Host "CodeCoveragePathWildcard: $CodeCoveragePathWildcard" -ForegroundColo
 
 if ($IsWindows)
 {
-    find (Resolve-Path $PathToCodeCoverage).Path -type f
+    find (Resolve-Path $PathToCodeCoverage).FullName -type f
 }
 
 Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
