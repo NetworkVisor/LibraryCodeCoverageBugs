@@ -10,7 +10,7 @@ Param (
     [string]$PathToCodeCoverage
 )
 
-$coverageFiles =[string]::join(',', (Get-ChildItem "$RepoRoot/test/*.cobertura.xml" -Recurse))
+$coverageFiles =[string]::join(',', (Get-ChildItem $PathToCodeCoverage -Recurse))
 
 Write-Host "Publishing to codecov: $coverageFiles" -ForegroundColor Yellow
 
