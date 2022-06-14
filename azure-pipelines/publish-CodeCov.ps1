@@ -13,7 +13,7 @@ Param (
 )
 
 $RepoRoot = (Resolve-Path "$PSScriptRoot/..").Path
-$CodeCoveragePathWildcard = (Join-Path $PathToCodeCoverage "*.cobertura.xml" -Resolve)
+$CodeCoveragePathWildcard = (Join-Path $PathToCodeCoverage "*.cobertura.xml")
 
 Write-Host "RepoRoot: $RepoRoot" -ForegroundColor Yellow
 Write-Host "CodeCoveragePathWildcard: $CodeCoveragePathWildcard" -ForegroundColor Yellow
