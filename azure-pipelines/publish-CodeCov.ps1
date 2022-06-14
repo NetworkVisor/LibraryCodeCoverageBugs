@@ -18,7 +18,8 @@ $codeCoverageFiles = @(Get-ChildItem "$PathToCodeCoverage/*.cobertura.xml" -Recu
 
 $codeCoverageFiles |%
 {
-    & (& $PSScriptRoot\Get-CodeCovTool.ps1) -t $CodeCovToken -f $_
+    Write-Host "Uploading $_" -ForegroundColor Yellow
+    & (& $PSScriptRoot\Get-CodeCovTool.ps1) -t "$CodeCovToken" -f "$_"
 }
 
 
