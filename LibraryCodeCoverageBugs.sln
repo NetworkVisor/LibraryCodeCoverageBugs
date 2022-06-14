@@ -98,10 +98,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{B680B8DB
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "platform", "platform", "{3C2D18A1-7AB5-4088-ADFF-78CD73A0A5AB}"
+	ProjectSection(SolutionItems) = preProject
+		test\platform\Directory.Build.props = test\platform\Directory.Build.props
+		test\platform\Directory.Build.targets = test\platform\Directory.Build.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "windows", "windows", "{EE666ED5-BBD7-4C83-A7D6-664C0A182DFE}"
+	ProjectSection(SolutionItems) = preProject
+		test\platform\windows\Directory.Build.props = test\platform\windows\Directory.Build.props
+		test\platform\windows\Directory.Build.targets = test\platform\windows\Directory.Build.targets
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryCodeCoverageBugs.Windows.UnitTests", "test\platform\windows\LibraryCodeCoverageBugs.Windows.UnitTests\LibraryCodeCoverageBugs.Windows.UnitTests.csproj", "{9D1B0612-D77D-4A77-A65C-955F56826B1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryCodeCoverageBugs.Windows.UnitTests", "test\platform\windows\LibraryCodeCoverageBugs.Windows.UnitTests\LibraryCodeCoverageBugs.Windows.UnitTests.csproj", "{9D1B0612-D77D-4A77-A65C-955F56826B1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
