@@ -1,6 +1,8 @@
 <#
 .SYNOPSIS
     Uploads code coverage to codecov.io
+.PARAMETER CodeCovToken
+    Code coverage token to use
 .PARAMETER PathToCodeCoverage
     Path to root of code coverage files
 #>
@@ -16,4 +18,4 @@ $coverageFiles =[string]::join(',', (Get-ChildItem "$PathToCodeCoverage/*.cobert
 
 Write-Host "Publishing to codecov: $coverageFiles" -ForegroundColor Yellow
 
-& (& $PSScriptRoot\Get-CodeCovTool.ps1) -t $CodeCovToken -d $PathToCodeCoverage
+& (& $PSScriptRoot\Get-CodeCovTool.ps1) -t "$CodeCovToken -s "$PathToCodeCoverage
