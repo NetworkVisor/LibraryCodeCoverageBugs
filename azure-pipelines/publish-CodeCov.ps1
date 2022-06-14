@@ -20,15 +20,15 @@ Write-Host "CodeCoveragePathWildcard: $CodeCoveragePathWildcard" -ForegroundColo
 
 Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
 
-    if ($IsWindows)
+    if ($IsMacOS -or $IsLinux)
+    {
+        $relativeFilePath = $_
+    }
+    else
     {
         $targetFilePath = Get-ChildItem $_ | Select-Object -ExpandProperty Target
         Write-Host "TargetFilePath: $targetFilePath" -ForegroundColor Yellow
         $relativeFilePath = Resolve-Path -relative $targetFilePath
-    }
-    else
-    {
-        $relativeFilePath = $_
     }
 
     if (-not (Test-Path $$relativeFilePath)) {
