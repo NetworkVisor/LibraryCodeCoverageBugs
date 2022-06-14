@@ -17,7 +17,7 @@ Write-Host "Path to codecov $codeCovToolPath" -ForegroundColor Yellow
 
 Get-ChildItem -Recurse -Path "$PathToCodeCoverage/*.cobertura.xml" | % {
     Write-Host "Uploading $_" -ForegroundColor Yellow
-    & (& & "$PSScriptRoot/Get-CodeCovTool.ps1") -t $CodeCovToken -f $_
+    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t $CodeCovToken -f $_
 }
 
 
