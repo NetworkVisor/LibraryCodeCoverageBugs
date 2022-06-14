@@ -41,7 +41,7 @@ jobs:
         }
       shell: pwsh
     - name: Download codecov tool
-      run:  echo azure-pipelines/Get-CodeCovTool.ps1
+      run:  azure-pipelines/Get-CodeCovTool.ps1
       shell: pwsh
     - name: Set pipeline variables based on source
       run: azure-pipelines/variables/_pipelines.ps1

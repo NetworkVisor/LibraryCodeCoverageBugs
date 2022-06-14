@@ -31,4 +31,9 @@ if (!(Test-Path $codeCovPath)) {
     (New-Object System.Net.WebClient).DownloadFile($codeCovUrl, $codeCovPath)
 }
 
+if (!(Test-Path $codeCovPath))
+{
+    Write-Host "Successfully downloaded to $codeCovPath" -ForegroundColor Yellow
+}
+
 return (Resolve-Path $codeCovPath).Path
