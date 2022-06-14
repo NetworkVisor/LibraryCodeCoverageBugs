@@ -65,7 +65,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure-pipelines", "azure-pi
 		azure-pipelines\release.yml = azure-pipelines\release.yml
 		azure-pipelines\test.runsettings = azure-pipelines\test.runsettings
 		azure-pipelines\Get-CodeCovTool.ps1 = azure-pipelines\Get-CodeCovTool.ps1
-		azure-pipelines\publish-codecov.ps1 = azure-pipelines\publish-codecov.ps1
+		azure-pipelines\publish-CodeCov.ps1 = azure-pipelines\publish-CodeCov.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "artifacts", "artifacts", "{350282D8-666A-4A8C-B298-F11368269BB1}"
