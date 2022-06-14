@@ -31,9 +31,8 @@ if (!(Test-Path $codeCovPath)) {
     (New-Object System.Net.WebClient).DownloadFile($codeCovUrl, $codeCovPath)
 }
 
-if (Test-Path $codeCovPath)
-{
-    Write-Host "Successfully downloaded from $codeCovUrl to $codeCovPath" -ForegroundColor Yellow
+if ($IsMacOS -or $IsLinux) {
+    chmod u+x $codeCovPath
 }
 
 return (Resolve-Path $codeCovPath).Path

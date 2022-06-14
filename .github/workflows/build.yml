@@ -40,9 +40,6 @@ jobs:
           mono --version
         }
       shell: pwsh
-    - name: Download codecov tool
-      run:  azure-pipelines/Get-CodeCovTool.ps1
-      shell: pwsh
     - name: Set pipeline variables based on source
       run: azure-pipelines/variables/_pipelines.ps1
       shell: pwsh
@@ -112,9 +109,6 @@ jobs:
         path: ${{ runner.temp }}/_artifacts/deployables
       if: always()
     - name: Publish code coverage results to codecov.io
-      uses: codecov/codecov-action@v2
-      with:
-        token: ${{ env.codecov_token }} # not required for public repos
-        flags: unittests,${{ runner.os }}
+      run: azure-pipelines/publish-CodeCov.ps1 ${{ runner.temp }}/_artifacts/coverageResults
       timeout-minutes: 3
       continue-on-error: true
