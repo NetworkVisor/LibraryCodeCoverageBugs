@@ -22,7 +22,7 @@ $codeCoverageFiles = @(Get-ChildItem "$PathToCodeCoverage/*.cobertura.xml" -Recu
 $codeCoverageFiles |%
 {
     Write-Host "Uploading $_" -ForegroundColor Yellow
-    (& $codeCovToolPath) -t "$CodeCovToken" -f "$_"
+    & $codeCovToolPath -t "$CodeCovToken" -f "$_"
 }
 
 
