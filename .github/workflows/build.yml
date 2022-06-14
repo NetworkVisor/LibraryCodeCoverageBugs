@@ -102,6 +102,11 @@ jobs:
         name: symbols-${{ runner.os }}
         path: ${{ runner.temp }}/_artifacts/symbols
       continue-on-error: true
+    - name: List coverage results
+      run: |
+        find ${{ runner.temp }}/_artifacts/coverageResults -t f -name "*.cobertura.xml"
+      shell: pwsh
+      if: always()
     - name: Upload deployables
       uses: actions/upload-artifact@v1
       with:
