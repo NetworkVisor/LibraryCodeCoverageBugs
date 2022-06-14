@@ -14,15 +14,15 @@ Param (
     [string]$PathToCodeCoverage
 )
 
-$codeCoverageFiles = @(Get-ChildItem "$PathToCodeCoverage/*.cobertura.xml" -Recurse)
-$codeCovToolPath = @(& $PSScriptRoot\Get-CodeCovTool.ps1)
+$codeCovToolPath = & "$PSScriptRoot\Get-CodeCovTool.ps1"
+Write-Host "Path to codecov $codeCovToolPath" -ForegroundColor Yellow
 
- Write-Host "Path to codecov $codeCovToolPath" -ForegroundColor Yellow
+$codeCoverageFiles = @(Get-ChildItem "$PathToCodeCoverage/*.cobertura.xml" -Recurse) 
 
 $codeCoverageFiles |%
 {
     Write-Host "Uploading $_" -ForegroundColor Yellow
-    & $codeCovToolPath -t "$CodeCovToken" -f "$_"
+    (& $codeCovToolPath) -t "$CodeCovToken" -f "$_"
 }
 
 
