@@ -18,7 +18,7 @@ $CodeCoveragePathWildcard = (Join-Path $PathToCodeCoverage "*.cobertura.xml")
 Write-Host "RepoRoot: $RepoRoot" -ForegroundColor Yellow
 Write-Host "CodeCoveragePathWildcard: $CodeCoveragePathWildcard" -ForegroundColor Yellow
 
-$Inputs = [string]::join(',', (Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | %
+$Inputs = [string]::join(',', (Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard |%
 {
     if ($IsMacOS -or $IsLinux)
     {
