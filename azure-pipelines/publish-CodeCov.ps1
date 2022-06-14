@@ -22,7 +22,7 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
 
     if ($IsMacOS -or $IsLinux)
     {
-        $relativeFilePath = $_
+        $relativeFilePath = Resolve-Path -relative (Get-ChildItem $_ | Select-Object -ExpandProperty Target)
     }
     else
     {
