@@ -20,12 +20,21 @@ Write-Host "CodeCoveragePathWildcard: $CodeCoveragePathWildcard" -ForegroundColo
 
 Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
 
-    if (-not (Test-Path $_)) {
-        Write-Host "Coverage file not found: $_" -ForegroundColor Yellow
+    if ($IsWindows)
+    {
+        $relativeFilePath = Resolve-Path -relative $_
     }
-    else {
-        Write-Host "Uploading: $_" -ForegroundColor Yellow
+    else
+    {
+        $relativeFilePath = $_
     }
 
-    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$_" -R "$RepoRoot"
+    if (-not (Test-Path $$relativeFilePath)) {
+        Write-Host "Coverage file not found: $relativeFilePath" -ForegroundColor Yellow
+    }
+    else {
+        Write-Host "Uploading: $relativeFilePath" -ForegroundColor Yellow
+    }
+
+    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$relativeFilePath" -R "$RepoRoot"
 }
