@@ -111,6 +111,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "windows", "windows", "{EE66
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryCodeCoverageBugs.Windows.UnitTests", "test\platform\windows\LibraryCodeCoverageBugs.Windows.UnitTests\LibraryCodeCoverageBugs.Windows.UnitTests.csproj", "{9D1B0612-D77D-4A77-A65C-955F56826B1E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{C8F92C16-C360-4E4E-B5DE-763DB07CDB49}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{E34FCF4E-84DB-4EF6-B571-AB912BC3DE04}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -146,6 +156,8 @@ Global
 		{3C2D18A1-7AB5-4088-ADFF-78CD73A0A5AB} = {81005BD9-96BB-440F-8459-34EC6DA1A500}
 		{EE666ED5-BBD7-4C83-A7D6-664C0A182DFE} = {3C2D18A1-7AB5-4088-ADFF-78CD73A0A5AB}
 		{9D1B0612-D77D-4A77-A65C-955F56826B1E} = {EE666ED5-BBD7-4C83-A7D6-664C0A182DFE}
+		{C8F92C16-C360-4E4E-B5DE-763DB07CDB49} = {C40BB905-C12A-4E5A-BC04-9F5827F45A9D}
+		{E34FCF4E-84DB-4EF6-B571-AB912BC3DE04} = {C8F92C16-C360-4E4E-B5DE-763DB07CDB49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3944F6A-384B-4B0F-B93F-3BD513DC57BD}
