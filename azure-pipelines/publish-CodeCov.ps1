@@ -12,29 +12,20 @@ Param (
     [string]$PathToCodeCoverage
 )
 
+# CodeCov cannot handle full windows paths so make them relative
+if ($IsWindows)
+{
+    $relativeFilePath = Resolve-Path -relative $PathToCodeCoverage
+    $codeCoveragePathWildcard = (Join-Path $relativeFilePath "*.cobertura.xml")
+}
+else
+{
+    $codeCoveragePathWildcard = (Join-Path $PathToCodeCoverage "*.cobertura.xml")
+}
+
 $RepoRoot = (Resolve-Path "$PSScriptRoot/..").Path
-$CodeCoveragePathWildcard = (Join-Path $PathToCodeCoverage "*.cobertura.xml")
 
 Write-Host "RepoRoot: $RepoRoot" -ForegroundColor Yellow
-Write-Host "CodeCoveragePathWildcard: $CodeCoveragePathWildcard" -ForegroundColor Yellow
+Write-Host "CodeCoveragePathWildcard: $codeCoveragePathWildcard" -ForegroundColor Yellow
 
-Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
-
-    if ($IsWindows)
-    {
-        $relativeFilePath = Resolve-Path -relative $_
-    }
-    else
-    {
-        $relativeFilePath = $_
-    }
-
-    if (-not (Test-Path $$relativeFilePath)) {
-        Write-Host "Coverage file not found: $relativeFilePath" -ForegroundColor Yellow
-    }
-    else {
-        Write-Host "Uploading: $relativeFilePath" -ForegroundColor Yellow
-    }
-
-    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$relativeFilePath" -R "$RepoRoot"
-}
+& (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -s "$codeCoveragePathWildcard" -R "$RepoRoot"
