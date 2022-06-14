@@ -32,4 +32,6 @@ $reports = @(Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard |%
 
 $Inputs = [string]::join(',', $reports)
 
-& (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$Inputs" -R "$RepoRoot"
+Write-Host "Inputs: $Inputs" -ForegroundColor Yellow
+
+# & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$Inputs" -R "$RepoRoot"
