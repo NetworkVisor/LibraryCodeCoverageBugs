@@ -8,9 +8,7 @@
 #>
 [CmdletBinding()]
 Param (
-    [Parameter()]
     [string]$CodeCovToken,
-    [Parameter()]
     [string]$PathToCodeCoverage
 )
 
