@@ -15,7 +15,7 @@ Param (
 $codeCovToolPath = & "$PSScriptRoot/Get-CodeCovTool.ps1"
 Write-Host "Path to codecov $codeCovToolPath" -ForegroundColor Yellow
 
-Get-ChildItem -Recurse -Path "$PathToCodeCoverage/*.cobertura.xml" | % {
+Get-ChildItem -Recurse -Path "$PathToCodeCoverage/*.cobertura.xml" -Name | % {
 
     # Replace Directory Separator on Windows
     if ($IsWindows)
