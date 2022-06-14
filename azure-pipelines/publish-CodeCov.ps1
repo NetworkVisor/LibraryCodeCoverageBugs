@@ -13,24 +13,13 @@ Param (
 )
 
 $RepoRoot = (Resolve-Path "$PSScriptRoot/..").Path
-$codeCovToolPath = & "$PSScriptRoot/Get-CodeCovTool.ps1"
-Write-Host "Path to codecov $codeCovToolPath" -ForegroundColor Yellow
+$CodeCoveragePathWildcard = (Join-Path $PathToCodeCoverage "*.cobertura.xml" -Resolve)
 
-Get-ChildItem -Recurse -Path "$PathToCodeCoverage/*.cobertura.xml" | % {
+Write-Host "RepoRoot: $RepoRoot" -ForegroundColor Yellow
+Write-Host "CodeCoveragePathWildcard: $CodeCoveragePathWildcard" -ForegroundColor Yellow
 
-    # Replace Directory Separator on Windows
-    if ($IsWindows)
-    {
-        $filePath = $_.FullName
-    }
-    else
-    {
-        $filePath = $_.FullName
-    }
+Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
 
     Write-Host "Uploading $filePath" -ForegroundColor Yellow
-    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t $CodeCovToken -f $filePath -R $RepoRoot
+    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t $CodeCovToken -f $_ -R $RepoRoot
 }
-
-
-
