@@ -15,17 +15,17 @@ Param (
 $codeCovToolPath = & "$PSScriptRoot/Get-CodeCovTool.ps1"
 Write-Host "Path to codecov $codeCovToolPath" -ForegroundColor Yellow
 
-Get-ChildItem -Recurse -Path "$PathToCodeCoverage/*.cobertura.xml" -Name | % {
+Get-ChildItem -Recurse -Path "$PathToCodeCoverage/*.cobertura.xml" | % {
 
     # Replace Directory Separator on Windows
     if ($IsWindows)
     {
-        $filePath = $_
+        $filePath = $_.FullName
         $filePath.replace([IO.Path]::DirectorySeparatorChar, [IO.Path]::AltDirectorySeparatorChar)
     }
     else
     {
-        $filePath = $_
+        $filePath = $_.FullName
     }
 
     Write-Host "Uploading $_" -ForegroundColor Yellow
