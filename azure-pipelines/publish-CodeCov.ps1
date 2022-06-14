@@ -18,4 +18,4 @@ $coverageFiles =[string]::join(',', (Get-ChildItem "$PathToCodeCoverage/*.cobert
 
 Write-Host "Publishing to codecov: $coverageFiles" -ForegroundColor Yellow
 
-& (& $PSScriptRoot\Get-CodeCovTool.ps1) -t "$CodeCovToken -s "$PathToCodeCoverage
+& (& $PSScriptRoot\Get-CodeCovTool.ps1) -t "$CodeCovToken" -s "$PathToCodeCoverage"
