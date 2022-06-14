@@ -22,7 +22,9 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
 
     if ($IsWindows)
     {
-        $relativeFilePath = (Get-ChildItem $_ | Select-Object -ExpandProperty Target)
+        $targetFilePath = Get-ChildItem $_ | Select-Object -ExpandProperty Target
+        Write-Host "TargetFilePath: $targetFilePath" -ForegroundColor Yellow
+        $relativeFilePath = Resolve-Path -relative $targetFilePath
     }
     else
     {
