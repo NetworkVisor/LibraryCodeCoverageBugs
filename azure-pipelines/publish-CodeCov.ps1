@@ -16,7 +16,7 @@ Param (
 
 $codeCoverageFiles = @(Get-ChildItem "$PathToCodeCoverage/*.cobertura.xml" -Recurse)
 
-$codeCoverageFiles %|
+$codeCoverageFiles |%
 {
     & (& $PSScriptRoot\Get-CodeCovTool.ps1) -t $CodeCovToken -f $_
 }
