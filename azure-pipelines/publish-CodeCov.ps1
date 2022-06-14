@@ -22,7 +22,7 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
 
     if ($IsWindows)
     {
-        $relativeFilePath = Resolve-Path -relative $_
+        $relativeFilePath = (Get-ChildItem $_).Target
     }
     else
     {
