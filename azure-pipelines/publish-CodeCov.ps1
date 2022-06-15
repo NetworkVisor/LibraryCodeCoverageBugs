@@ -32,7 +32,7 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
     }
 
     Write-Host "Uploading: $relativeFilePath" -ForegroundColor Yellow
-    reports += ($relativeFilePath + ",")
+    $reports += ($relativeFilePath + ",")
 }
 
 & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$reports" -R "$RepoRoot"
