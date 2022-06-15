@@ -60,10 +60,6 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
         {
             $TestTypeFlag = ",Device"
         }
-        else
-        {
-            $TestTypeFlag = ",UnknownTest"
-        }
 
         $OSTypeFlag = ""
 
@@ -110,10 +106,6 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
         elseif ($relativeFilePath -ilike ".Core")
         {
             $OSTypeFlag = ",Core"
-        }
-        else
-        {
-            $TestTypeFlag = ",UnknownOS"
         }
 
         $Flags += $TestTypeFlag
