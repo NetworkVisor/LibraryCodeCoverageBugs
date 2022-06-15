@@ -40,9 +40,7 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
 
     Write-Host "Uploading: $relativeFilePath" -ForegroundColor Yellow
 
-    $CalcNSFlags = true
-
-    if ($CalcNSFlags)
+    if (true)
     {
         $TestTypeFlag = "UnknownTest"
 
