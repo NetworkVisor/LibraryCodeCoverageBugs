@@ -113,5 +113,7 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
         $Flags = ($Flags, $TestTypeFlag, $OSTypeFlag -join ',')
     }
 
+    Write-Host "Flags: $Flags" -ForegroundColor Yellow
+
     & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$relativeFilePath" -R "$RepoRoot" -F "$Flags" -n "$Name"
 }
