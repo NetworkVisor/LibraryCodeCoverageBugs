@@ -42,73 +42,83 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
 
     if (true)
     {
-        $TestTypeFlag = "UnknownTest"
+        $TestTypeFlag = ""
 
         if ($relativeFilePath -ilike ".Unit")
         {
-            $TestTypeFlag = "Unit"
+            $TestTypeFlag = ",Unit"
         }
         elseif ($relativeFilePath -ilike ".Integration")
         {
-            $TestTypeFlag = "Integration"
+            $TestTypeFlag = ",Integration"
         }
         elseif ($relativeFilePath -ilike ".Local")
         {
-             $TestTypeFlag = "Local"
+             $TestTypeFlag = ",Local"
         }
         elseif ($relativeFilePath -ilike ".Device")
         {
-            $TestTypeFlag = "Device"
+            $TestTypeFlag = ",Device"
         }
+        else
+        {
+            $TestTypeFlag = ",UnknownTest"
+        }
+        
 
-        $OSTypeFlag = "UnknownOS"
+        $OSTypeFlag = ""
 
         if ($relativeFilePath -ilike ".Windows")
         {
-            $OSTypeFlag = "Windows"
+            $OSTypeFlag = ",Windows"
         }
         elseif ($relativeFilePath -ilike ".WinUI")
         {
-            $OSTypeFlag = "WinUI"
+            $OSTypeFlag = ",WinUI"
         }
         elseif ($relativeFilePath -ilike ".WPF")
         {
-            $OSTypeFlag = "WPF"
+            $OSTypeFlag = ",WPF"
         }
         elseif ($relativeFilePath -ilike ".MacOS")
         {
-            $OSTypeFlag = "MacOS"
+            $OSTypeFlag = ",MacOS"
         }
         elseif ($relativeFilePath -ilike ".MacCatalyst")
         {
-            $OSTypeFlag = "MacCatalyst"
+            $OSTypeFlag = ",MacCatalyst"
         }
         elseif ($relativeFilePath -ilike ".OSX")
         {
-            $OSTypeFlag = "MacOS"
+            $OSTypeFlag = ",MacOS"
         }
         elseif ($relativeFilePath -ilike ".Android")
         {
-            $OSTypeFlag = "Android"
+            $OSTypeFlag = ",Android"
         }
         elseif ($relativeFilePath -ilike ".IOS")
         {
-            $OSTypeFlag = "IOS"
+            $OSTypeFlag = ",IOS"
         }
         elseif ($relativeFilePath -ilike ".Linux")
         {
-            $OSTypeFlag = "Linux"
+            $OSTypeFlag = ",Linux"
         }
         elseif ($relativeFilePath -ilike ".NetCore")
         {
-            $OSTypeFlag = "NetCore"
+            $OSTypeFlag = ",NetCore"
         }
         elseif ($relativeFilePath -ilike ".Core")
         {
-            $OSTypeFlag = "Core"
+            $OSTypeFlag = ",Core"
+        }
+        else
+        {
+            $TestTypeFlag = ",UnknownOS"
         }
 
-        $Flags = ($Flags, $TestTypeFlag, $OSTypeFlag -join ',')
+        $Flags += $TestTypeFlag
+        $Flags += $OSTypeFlag
     }
 
     Write-Host "Flags: $Flags" -ForegroundColor Yellow
