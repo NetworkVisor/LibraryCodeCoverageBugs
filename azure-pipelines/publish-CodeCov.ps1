@@ -17,7 +17,7 @@ Param (
     [string]$CodeCovToken,
     [string]$PathToCodeCoverage,
     [string]$Name="",
-    [switch]$CalcNSFlags = true,
+    [switch]$CalcNSFlags,
     [string]$Flags=""
 )
 
@@ -39,6 +39,8 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
     }
 
     Write-Host "Uploading: $relativeFilePath" -ForegroundColor Yellow
+
+    $CalcNSFlags = true
 
     if ($CalcNSFlags)
     {
