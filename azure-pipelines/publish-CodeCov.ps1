@@ -18,6 +18,8 @@ $CodeCoveragePathWildcard = (Join-Path $PathToCodeCoverage "*.cobertura.xml")
 Write-Host "RepoRoot: $RepoRoot" -ForegroundColor Yellow
 Write-Host "CodeCoveragePathWildcard: $CodeCoveragePathWildcard" -ForegroundColor Yellow
 
+$reports = ""
+
 Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
 
     if ($IsMacOS -or $IsLinux)
@@ -30,6 +32,7 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
     }
 
     Write-Host "Uploading: $relativeFilePath" -ForegroundColor Yellow
-
-    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$relativeFilePath" -R "$RepoRoot"
+    reports += ($relativeFilePath + ",")
 }
+
+& (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$reports" -R "$RepoRoot"
