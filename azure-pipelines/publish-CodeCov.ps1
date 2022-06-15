@@ -13,8 +13,8 @@
 [CmdletBinding()]
 Param (
     [string]$CodeCovToken,
-    [string]$PathToCodeCoverage
-    [string]$Name=""
+    [string]$PathToCodeCoverage,
+    [string]$Name="",
     [string]$Flags=""
 )
 
