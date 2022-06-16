@@ -39,80 +39,76 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
     }
 
     Write-Host "Uploading: $relativeFilePath" -ForegroundColor Yellow
+    $TestTypeFlag = ""
+    $OSTypeFlag = ""
+    $FTargetFrameworkFlag = ""
 
     if ($CalcNSFlags)
     {
-        $TestTypeFlag = ""
-
-        if ($relativeFilePath -ilike ".Unit")
+        if ($relativeFilePath -ilike "*.Unit*")
         {
             $TestTypeFlag = ",Unit"
         }
-        elseif ($relativeFilePath -ilike ".Integration")
+        elseif ($relativeFilePath -ilike "*.Integration*")
         {
             $TestTypeFlag = ",Integration"
         }
-        elseif ($relativeFilePath -ilike ".Local")
+        elseif ($relativeFilePath -ilike "*.Local*")
         {
              $TestTypeFlag = ",Local"
         }
-        elseif ($relativeFilePath -ilike ".Device")
+        elseif ($relativeFilePath -ilike "*.Device*")
         {
             $TestTypeFlag = ",Device"
         }
 
-        $OSTypeFlag = ""
-
-        if ($relativeFilePath -ilike ".Windows")
+        if ($relativeFilePath -ilike "*.Windows*")
         {
             $OSTypeFlag = ",Windows"
         }
-        elseif ($relativeFilePath -ilike ".WinUI")
+        elseif ($relativeFilePath -ilike "*.WinUI*")
         {
             $OSTypeFlag = ",WinUI"
         }
-        elseif ($relativeFilePath -ilike ".WPF")
+        elseif ($relativeFilePath -ilike "*.WPF*")
         {
             $OSTypeFlag = ",WPF"
         }
-        elseif ($relativeFilePath -ilike ".MacOS")
+        elseif ($relativeFilePath -ilike "*.MacOS*")
         {
             $OSTypeFlag = ",MacOS"
         }
-        elseif ($relativeFilePath -ilike ".MacCatalyst")
+        elseif ($relativeFilePath -ilike "*.MacCatalyst*")
         {
             $OSTypeFlag = ",MacCatalyst"
         }
-        elseif ($relativeFilePath -ilike ".OSX")
+        elseif ($relativeFilePath -ilike "*.OSX*")
         {
             $OSTypeFlag = ",MacOS"
         }
-        elseif ($relativeFilePath -ilike ".Android")
+        elseif ($relativeFilePath -ilike "*.Android*")
         {
             $OSTypeFlag = ",Android"
         }
-        elseif ($relativeFilePath -ilike ".IOS")
+        elseif ($relativeFilePath -ilike "*.IOS*")
         {
             $OSTypeFlag = ",IOS"
         }
-        elseif ($relativeFilePath -ilike ".Linux")
+        elseif ($relativeFilePath -ilike "*.Linux*")
         {
             $OSTypeFlag = ",Linux"
         }
-        elseif ($relativeFilePath -ilike ".NetCore")
+        elseif ($relativeFilePath -ilike "*.NetCore*")
         {
             $OSTypeFlag = ",NetCore"
         }
-        elseif ($relativeFilePath -ilike ".Core")
+        elseif ($relativeFilePath -ilike "*.Core*")
         {
             $OSTypeFlag = ",Core"
         }
-
-        $Flags += $TestTypeFlag
-        $Flags += $OSTypeFlag
     }
 
-    Write-Host "Flags: $Flags" -ForegroundColor Yellow
+    Write-Host "Flags: $Flags$TargetFrameworkFlag$TestTypeFlag$OSTypeFlag" -ForegroundColor Yellow
 
-    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$relativeFilePath" -R "$RepoRoot" -F "$Flags" -n "$Name"
+    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$relativeFilePath" -R "$RepoRoot" -F "$Flags$TargetFrameworkFlag$TestTypeFlag$OSTypeFlag" -n "$Name"
 }
