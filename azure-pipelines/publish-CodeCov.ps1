@@ -7,6 +7,8 @@
     Path to root of code coverage files
 .PARAMETER Name
     Optional name to upload with codecoverge
+.PARAMETER CalcNSFlags
+    Optional switch to calculate Flags from namespace of test.
 .PARAMETER Flags
     Optional flags to upload with codecoverge
 #>
@@ -15,6 +17,7 @@ Param (
     [string]$CodeCovToken,
     [string]$PathToCodeCoverage,
     [string]$Name="",
+    [switch]$CalcNSFlags,
     [string]$Flags=""
 )
 
@@ -36,6 +39,76 @@ Get-ChildItem -Recurse -Path $CodeCoveragePathWildcard | % {
     }
 
     Write-Host "Uploading: $relativeFilePath" -ForegroundColor Yellow
+    $TestTypeFlag = ""
+    $OSTypeFlag = ""
+    $FTargetFrameworkFlag = ""
 
-    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$relativeFilePath" -R "$RepoRoot" -F "$Flags" -n "$Name"
+    if ($CalcNSFlags)
+    {
+        if ($relativeFilePath -ilike "*.Unit*")
+        {
+            $TestTypeFlag = ",Unit"
+        }
+        elseif ($relativeFilePath -ilike "*.Integration*")
+        {
+            $TestTypeFlag = ",Integration"
+        }
+        elseif ($relativeFilePath -ilike "*.Local*")
+        {
+             $TestTypeFlag = ",Local"
+        }
+        elseif ($relativeFilePath -ilike "*.Device*")
+        {
+            $TestTypeFlag = ",Device"
+        }
+
+        if ($relativeFilePath -ilike "*.Windows*")
+        {
+            $OSTypeFlag = ",Windows"
+        }
+        elseif ($relativeFilePath -ilike "*.WinUI*")
+        {
+            $OSTypeFlag = ",WinUI"
+        }
+        elseif ($relativeFilePath -ilike "*.WPF*")
+        {
+            $OSTypeFlag = ",WPF"
+        }
+        elseif ($relativeFilePath -ilike "*.MacOS*")
+        {
+            $OSTypeFlag = ",MacOS"
+        }
+        elseif ($relativeFilePath -ilike "*.MacCatalyst*")
+        {
+            $OSTypeFlag = ",MacCatalyst"
+        }
+        elseif ($relativeFilePath -ilike "*.OSX*")
+        {
+            $OSTypeFlag = ",MacOS"
+        }
+        elseif ($relativeFilePath -ilike "*.Android*")
+        {
+            $OSTypeFlag = ",Android"
+        }
+        elseif ($relativeFilePath -ilike "*.IOS*")
+        {
+            $OSTypeFlag = ",IOS"
+        }
+        elseif ($relativeFilePath -ilike "*.Linux*")
+        {
+            $OSTypeFlag = ",Linux"
+        }
+        elseif ($relativeFilePath -ilike "*.NetCore*")
+        {
+            $OSTypeFlag = ",NetCore"
+        }
+        elseif ($relativeFilePath -ilike "*.Core*")
+        {
+            $OSTypeFlag = ",Core"
+        }
+    }
+
+    Write-Host "Flags: $Flags$TargetFrameworkFlag$TestTypeFlag$OSTypeFlag" -ForegroundColor Yellow
+
+    & (& "$PSScriptRoot/Get-CodeCovTool.ps1") -t "$CodeCovToken" -f "$relativeFilePath" -R "$RepoRoot" -F "$Flags$TargetFrameworkFlag$TestTypeFlag$OSTypeFlag" -n "$Name"
 }
